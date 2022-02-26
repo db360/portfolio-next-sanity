@@ -8,6 +8,10 @@ import { images } from "../../constants";
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
 
+const hideNavBtn = (e) => {
+  setToggle(true)
+}
+
   return (
     <nav className="app__navbar">
       <div className="app__navbar-logo">
@@ -22,15 +26,19 @@ const Navbar = () => {
         ))}
       </ul>
 
-      <div className="app__navbar-menu">
-        <HiMenuAlt4 onClick={() => setToggle(true)} />
+      <div
+        className="app__navbar-menu"
+        style={toggle ? { backgroundColor:'transparent',animation:'ease-in-out', transitionDuration:'0.6s' } : {}}
+      >
+        <HiMenuAlt4 onClick={() => hideNavBtn()} className={`${toggle ? "toggled" : ""}`}/>
 
         {toggle && (
           <motion.div
-            whileInView={{ x: [300, 0] }}
-            transition={{ duration: 0.85, ease: "easeOut" }}
+            whileInView={{ y: [350, 0], opacity: [0, 1] }}
+            transition={{ duration: 0.85, ease: "easeInOut" }}
+            className="app__navbar-container"
           >
-            <HiX onClick={() => setToggle(false)} />
+            {<HiX onClick={() => setToggle(false)} />}
             <ul>
               {["home", "about", "work", "skills", "contact"].map((item) => (
                 <li key={item}>

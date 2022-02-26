@@ -2,34 +2,11 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { urlFor, client } from "../../client";
 
-import {AppWrap} from '../../wrapper'
+import {AppWrap, MotionWrap} from '../../wrapper';
 
 import "./About.scss";
 
 const About = () => {
-  // const abouts = [
-  //   {
-  //     title: "Web Development",
-  //     description: "Web Development is my passion",
-  //     imgUrl: images.about01,
-  //   },
-  //   {
-  //     title: "Sound Technician",
-  //     description: "Producing / Mixing / Mastering",
-  //     imgUrl: images.about02,
-  //   },
-  //   {
-  //     title: "UI/UX Design",
-  //     description: "Prototypes / Research / User Experience",
-  //     imgUrl: images.about03,
-  //   },
-  //   {
-  //     title: "A/V - Motion Graphics",
-  //     description: "3D Design - Video Postproduction / Editing",
-  //     imgUrl: images.about04,
-  //   },
-  // ];
-
   const [abouts, setAbouts] = useState([]);
 
   useEffect(() => {
@@ -40,25 +17,21 @@ const About = () => {
 
   return (
     <>
-      <h2 className="head-text">
-        I know That <span>Good Development</span> <br /> means{" "}
-        <span>Good Business</span>
-      </h2>
-
+    <h2 className="head-text">Make it<span> simple, </span> but <br />  <span>Significant</span></h2>
       <div className="app__profiles">
         {abouts.map((about, index) => (
           <motion.div
             whileInView={{ opacity: 1 }}
             whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.5, type: "tz" }}
+            transition={{ duration: 0.5, type: "spring" }}
             className="app__profile-item"
             key={about.title + index}
           >
             <img src={urlFor(about.imgUrl)} alt={about.title} />
-            <h2 className="bold-text" style={{ marginTop: 20 }}>
+            <h2 className="bold-text about__bold-text" style={{ marginTop: 20 }}>
               {about.title}
             </h2>
-            <p className="p-text" style={{ marginTop: 10 }}>
+            <p className="p-text description" style={{ marginTop: 30 }}>
               {about.description}
             </p>
           </motion.div>
@@ -68,4 +41,8 @@ const About = () => {
   );
 };
 
-export default AppWrap(About, 'about');
+export default AppWrap(
+  MotionWrap(About, 'app__about'),
+  'about',
+  "app__whitebg"
+);

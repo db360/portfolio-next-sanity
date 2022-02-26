@@ -10,6 +10,11 @@
   --gray-color: #6b7688;
   --brown-color: #46364a;
   --white-color: #ffffff;
+  --white-color-navbar: rgba(255, 255, 255, 1);
+
+  height: 100vh;
+  background-color: var(--primary-color);
+
 }
 
 * {
